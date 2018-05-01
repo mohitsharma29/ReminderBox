@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Welcome to RemBox {% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+    Welcome to RemBox. Use the below form to add a new medicine schedule.
+</div>
+<form action="/" method="POST" class="form-horizontal text-center">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="form-group">{{ form.medicineName.label }} {{ form.medicineName(id='medname') }}</div>
+        <div class="form-group">{{ form.boxName.label }} {{ form.boxName }}</div>
+        <div class="form-group">{{ form.afterWhat.label }} {{ form.afterWhat }}</div>
+        <div class="form-group">{{ form.numberTabs.label }} {{ form.numberTabs }}</div>
+    <div class="form-group">{{ form.submit() }}</div><br>
+        {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p><br>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</form>
+{% endblock %}
